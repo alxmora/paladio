@@ -1,6 +1,7 @@
 
 import './Navbar.css'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import CartWidget from '../CartWidget/CartWidget'
 
 const Navbar = () => {
 
@@ -11,8 +12,8 @@ const Navbar = () => {
     }
 
     return (
-        <div>
-            <nav className="navbar">
+        <div className='bgWhite center' style={{borderBottom: '1px solid #000'}}>
+            <nav className="navbar widthXl">
                 <div className="brandName">
                     <h1>Paladio</h1>
                 </div>
@@ -22,11 +23,14 @@ const Navbar = () => {
                     <a href="#Collares">Collares</a>
                     <a href="#Pulseras">Pulseras</a>
                     <a href="#Aretes">Aretes</a>
+                <CartWidget/>
                 </div>
                 <div className="hamburguer">
+                    <CartWidget/>
                     <div onClick={handleClick} className={mobileNavActive ? 'menu open' : 'menu'} data-menu="12">
                         <div className="icon"></div>
                     </div>
+
                 </div>
             </nav>
             <div className={mobileNavActive ? 'mobileLinks open' : 'mobileLinks'}>

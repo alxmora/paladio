@@ -1,5 +1,5 @@
-body{
-  overflow-x: hidden !important;
+:root{
+  --bg-light: #F5F5F7;
 }
 
 ::-webkit-scrollbar {
@@ -12,4 +12,8 @@ body{
 ::-webkit-scrollbar-thumb {
   background: #000;
   border-radius: 10px; 
+}
+
+body{
+  background-color: var(--bg-light);
 }

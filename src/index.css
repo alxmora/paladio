@@ -2,6 +2,21 @@
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
+  overflow-x: hidden !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+
+.widthXl{
+  max-width: 2000px !important;
+}
+
+.bgWhite{
+ background-color: #fff !important;
+}
+
+.center{
+  display: flex;
+  justify-content: center;
 }
