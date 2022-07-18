@@ -1,12 +1,12 @@
 import './ItemListContainer.css'
 
-const ItemListContainer = () => {
+const ItemListContainer = (props) => {
     return (
 
         <div className="center">
             <div className='heroContainer widthXl'>
                 <div className='heroMessage'>
-                    <h1>Jewelry tells a great story</h1>
+                    <h1>{props.title}</h1>
                 </div>
             </div>
         </div>
