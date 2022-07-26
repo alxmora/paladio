@@ -16,7 +16,7 @@ const products = [
         category: 'rings',
         img: 'https://ae01.alicdn.com/kf/H0158b36bb90c470595eb0df63c8d02d4J/Anillo-Punk-Vintage-con-cara-de-sonrisa-feliz-para-mujer-joyer-a-Bohemia-con-dijes-anillo.jpg_Q90.jpg_.webp',
         hover: 'https://ae01.alicdn.com/kf/Hd557c8f2000b43cc9d8bee08b19d012dN.jpg',
-        stock: 20,
+        stock: 10,
         description: ' Made of brass. 18/23k'
     },
     {
@@ -26,7 +26,7 @@ const products = [
         category: 'bracelets',
         img: 'https://ae01.alicdn.com/kf/Sf665eb5e6ba14013918b16960ee7767bR.jpg',
         hover: 'https://ae01.alicdn.com/kf/Sa4c08d49a99f4ca7a440b57424ec91f6x.jpg',
-        stock: 20,
+        stock: 15,
         description: '19cm length. Made of cultured pearls'
     },
     {
@@ -36,7 +36,7 @@ const products = [
         category: 'earrings',
         img: 'https://ae01.alicdn.com/kf/H1f46a6c1c93344eb83966b679341f951l.jpg',
         hover: 'https://ae01.alicdn.com/kf/H3f5019dca2bb4b24be3b7ceaa0c96694J.jpg',
-        stock: 20,
+        stock: 5,
         description: "Diameter of 30mm & 3.5mm thick"
     }
 ]
