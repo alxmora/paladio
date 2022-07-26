@@ -1,0 +1,43 @@
+.itemCard{
+    overflow: hidden;
+    padding: 5px;
+}
+
+.itemImageContainer{
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.itemImage{
+    transition: all 500ms ease;
+}
+
+.itemImage:hover{
+    transform: scale(1.1);
+}
+
+.itemInfo{
+    margin-top: 20px;
+    min-height: 80px;
+}
+
+.itemName{
+    font-weight: 700;
+}
+
+.itemPrice{
+    font-size: 14px;
+}
+
+.itemDetails{
+    width: 100%;
+    margin-top: 5px;
+    background-color: transparent;
+    border: 1px solid black;
+}
+
+.itemDetails:hover{
+    background-color: black;
+    color: white;
+}

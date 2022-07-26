@@ -8,6 +8,11 @@
     width: 100%;
 }
 
+.brandName h1{
+    font-size: 20px;
+    cursor: pointer;
+}
+
 .navLinks{
     display: flex;
     flex-direction: row;
@@ -15,7 +20,7 @@
 
 .navLinks a {
     text-decoration: none;
-    color: black;
+    color: black !important;
     margin: 15px;
     font-weight: 600;
     letter-spacing: 1px;
@@ -28,11 +33,11 @@
 
 .navLinks a::after{
     content: "";
-    height: 2px;
+    height: 1px;
     background-color: #212121;
     transform: translateX(-100%);
     opacity: 0;
-    transition: all 250ms ease;
+    transition: all 350ms ease;
 }
 
 .navLinks a:hover::after{
@@ -88,8 +93,11 @@
 
 .menu.open .icon {
     transition-duration: 0.5s;
-    color: #fff !important;
     background: transparent;
+}
+
+.menu.open .icon:before, .menu.open .icon:after {
+    background: #fff;
 }
 
 .menu.open .icon:before {
@@ -105,7 +113,8 @@
 }
 
 .mobileLinks{
-    position: absolute;
+    position: fixed;
+    top: 0;
     width: 100%;
     height: 100vh;
     background-color: black;
@@ -114,8 +123,7 @@
     transition: all 600ms ease;
     display: flex;
     flex-direction: column;
-    padding: 100px 0 0 20px;
-    margin-top: 68px;
+    padding: 100px 50px 0 100px;
 }
 
 .mobileLinks a{
