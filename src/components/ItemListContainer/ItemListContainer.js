@@ -16,7 +16,7 @@ const ItemListContainer = (props) => {
         <section>
             <div className="center">
                 <div className='heroContainer'>
-                        <h1>{props.title}</h1>
+                    <h1>{props.title}</h1>
                 </div>
                 <br />
             </div>

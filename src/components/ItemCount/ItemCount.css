@@ -1,0 +1,23 @@
+.counter{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    padding-left: 10px;
+}
+
+.counterIcon{
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.btnAddItem{
+    width: 100%;
+    border: none;
+    background-color: black;
+    color: white;
+    text-transform: uppercase;
+    padding: 10px;
+    font-weight: 200;
+}
