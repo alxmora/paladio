@@ -8,9 +8,16 @@
     width: 100%;
 }
 
-.brandName h1{
+.brandName a{
     font-size: 20px;
+    color: black;
+    font-weight: 500;
+    text-decoration: none;
     cursor: pointer;
+}
+
+.brandName a:hover{
+    color: black;
 }
 
 .navLinks{
@@ -149,6 +156,10 @@
     opacity: 0;
     transition: all 200ms ease;
  }
+
+ .mobileLinks a:hover{
+    color: white !important;
+ } 
 
  .mobileLinks a:hover::after{
     opacity: 1;

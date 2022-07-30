@@ -2,6 +2,7 @@
 import './Navbar.css'
 import { useState } from 'react'
 import CartWidget from '../CartWidget/CartWidget'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
 
@@ -15,30 +16,29 @@ const Navbar = () => {
         <div className='bgWhite' style={{borderBottom: '1px solid #000'}}>
             <nav className="navbar container">
                 <div className="brandName">
-                    <h1>Paladio</h1>
+                    <Link to='/'>Paladio</Link>
                 </div>
                 <div className="navLinks">
-                    <a href="#Inicio">Inicio</a>
-                    <a href="#Anillos">Anillos</a>
-                    <a href="#Collares">Collares</a>
-                    <a href="#Pulseras">Pulseras</a>
-                    <a href="#Aretes">Aretes</a>
-                <CartWidget/>
+                    <Link to='/' href="#Inicio">Inicio</Link>
+                    <Link to='/category/rings' href="#Anillos">Anillos</Link>
+                    <Link to='/category/necklaces' href="#Collares">Collares</Link>
+                    <Link to='/category/bracelets' href="#Pulseras">Pulseras</Link>
+                    <Link to='/category/earrings' href="#Aretes">Aretes</Link>
+                    <CartWidget/>
                 </div>
                 <div className="hamburguer">
                     <CartWidget/>
                     <div onClick={handleClick} className={mobileNavActive ? 'menu open' : 'menu'} data-menu="12">
                         <div className="icon"></div>
                     </div>
-
                 </div>
             </nav>
             <div className={mobileNavActive ? 'mobileLinks open' : 'mobileLinks'}>
-                <a href="#Inicio">Inicio</a>
-                <a href="#Anillos">Anillos</a>
-                <a href="#Collares">Collares</a>
-                <a href="#Pulseras">Pulseras</a>
-                <a href="#Aretes">Aretes</a>
+                <Link to='/' href="#Inicio">Inicio</Link>
+                <Link to='/category/rings' href="#Anillos">Anillos</Link>
+                <Link to='/category/necklaces' href="#Collares">Collares</Link>
+                <Link to='/category/bracelets' href="#Pulseras">Pulseras</Link>
+                <Link to='/category/earrings' href="#Aretes">Aretes</Link>
             </div>
         </div>
 
