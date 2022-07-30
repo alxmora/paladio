@@ -11,6 +11,7 @@
     overflow: hidden;
 }
 
+
 .itemImage{
     transition: all 500ms ease;
 }
@@ -33,13 +34,18 @@
 }
 
 .itemDetails{
+    padding: 3px;
     width: 100%;
+    text-align: center;
     margin-top: 5px;
     background-color: transparent;
-    border: 1px solid black;
+    border: 1px solid black !important;
+    border-radius: 0 !important;
+    text-decoration: none;
+    color: black;
 }
 
 .itemDetails:hover{
-    background-color: black;
-    color: white;
+    background-color: black !important;
+    color: white !important;
 }

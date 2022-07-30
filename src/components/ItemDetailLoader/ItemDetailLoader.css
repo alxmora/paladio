@@ -1,0 +1,43 @@
+.loader {
+    background-color: #ccc;
+    border-radius: 20%;
+    background: #eee;
+    background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+    border-radius: 5px;
+    background-size: 200% 100%;
+    -webkit-animation: 1.5s shine linear infinite;
+    animation: 1.5s shine linear infinite;
+    border: none;
+}
+
+.itemDetailImageLoader {
+    height: 80vh;
+    width: 100%;
+}
+
+.loader-h1 {
+    height: 48px;
+    width: 90%;
+}
+
+.loader-h4 {
+    height: 28px;
+    width: 40%;
+}
+
+.loader-p {
+    height: 10px;
+    width: 80%;
+}
+
+@-webkit-keyframes shine {
+    to {
+        background-position-x: -200%;
+    }
+}
+
+@keyframes shine {
+    to {
+        background-position-x: -200%;
+    }
+}
