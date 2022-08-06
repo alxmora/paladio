@@ -1,0 +1,19 @@
+.btnFinalizaCompra{
+    width: 100%;
+    height: 70px;
+    border: none;
+    background-color: black;
+    color: white;
+    text-transform: uppercase;
+    padding: 10px;
+    font-weight: 200;
+    text-decoration: none;
+    border-radius: 0;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+}
+
+.btnFinalizaCompra:hover{
+    color: white;
+}

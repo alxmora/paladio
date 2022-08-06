@@ -14,7 +14,7 @@ const Navbar = () => {
 
     return (
         <div className='bgWhite' style={{borderBottom: '1px solid #000'}}>
-            <nav className="navbar container">
+            <nav className="navbar container ps-2">
                 <div className="brandName">
                     <Link to='/'>Paladio</Link>
                 </div>
