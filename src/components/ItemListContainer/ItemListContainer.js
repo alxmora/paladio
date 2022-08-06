@@ -5,11 +5,14 @@ import ItemList from '../ItemList/ItemList'
 import { useParams } from 'react-router-dom'
 
 const ItemListContainer = (props) => {
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState([])
+    const [noItemsFound, setNoItemsFount] = useState(false)
 
     const {categoryId} = useParams()
 
     useEffect(() => {
+        setProducts([]);
+        setNoItemsFount(false);
         if(!categoryId){
             getProducts().then(products => {
                 setProducts(products);
@@ -17,7 +20,7 @@ const ItemListContainer = (props) => {
         }
         else{
             getProductsByCategory(categoryId).then(products => {
-                setProducts(products);
+                products.length > 0 ? setProducts(products) : setNoItemsFount(true);
             })
         }
     }, [categoryId])
@@ -32,6 +35,17 @@ const ItemListContainer = (props) => {
                     <br />
                 </div>
                 <ItemList products={products} />
+            </section>
+        )
+    }
+    else if(noItemsFound){
+        return (
+            <section>
+                <div className="center">
+                    <div className='heroContainer'>
+                        <h1>No se encontraron resultados para la categoría {categoryId}</h1>
+                    </div>
+                </div>
             </section>
         )
     }

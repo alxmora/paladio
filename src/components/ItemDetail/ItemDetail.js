@@ -1,13 +1,17 @@
 import ItemCount from "../ItemCount/ItemCount"
 
 const ItemDetail = (({product}) => {
-
+    const Swal = require('sweetalert2')
     const currencyFormat = (num) => {
         return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
     }
 
     const handleOnAdd = (quantity) => {
-        alert(`La cantidad agregada es: ${quantity}`)
+        Swal.fire(
+            'Artículo agregado al carrito!',
+            `Agregaste ${quantity} ${quantity > 1 ? 'piezas' : 'pieza'}`,
+            'success'
+        )
     }
 
 

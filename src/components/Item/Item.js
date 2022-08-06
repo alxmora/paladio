@@ -1,16 +1,8 @@
 import './Item.css'
 import { Link } from 'react-router-dom'
-
+import { useState } from 'react'
 const Item = ({ item }) => {
-
-    const itemImageStyle = {
-        background: `url(${item.img})`,
-        backgroundSize: 'cover',
-        backgroundPosition: '50% 50%',
-        cursor: 'pointer',
-        width: '100%',
-        height: '100%'
-    }
+    const [url, setUrl] = useState(item.img)
 
     const currencyFormat = (num) => {
         return '$' + num.toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
@@ -20,7 +12,14 @@ const Item = ({ item }) => {
         <div className="col-lg-3 col-md-6 col-sm-6 col-6 p-2">
             <div className="itemCard">
                 <div className='itemImageContainer'>
-                    <div className='itemImage' style={itemImageStyle}></div>
+                    <div className='itemImage' style={{
+                        background: `url(${url}) 50% 50% / cover`, 
+                        cursor: 'pointer',
+                        width: '100%',
+                        height: '100%'
+                    }} 
+                    onMouseEnter={() => setUrl(item.hover)}
+                    onMouseLeave={() => setUrl(item.img)}></div>
                 </div>
                 <div className="itemInfo">
                     <div>
