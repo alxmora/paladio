@@ -2,8 +2,12 @@
 # Paladio
 
 This is a project developed by Ramón Alejandro Jiménez Moreno for Coderhouse's React course. 
-
 Commission 34695.
+
+
+![Gif paladio](https://media.giphy.com/media/t83Kn1PzgfupXAjnm5/giphy.gif)
+- [FULL GIF](https://github.com/alxmora/paladio/blob/06PrimeraEntregaProyecto/public/images/gifs/paladio_gif.gif)
+
 
 ## Contents
 - [Technologies](#technologies)
