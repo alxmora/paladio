@@ -1,8 +1,8 @@
 import './ItemCount.css'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
-const ItemCount = ({ stock, onAdd }) => {
-    const [count, setCount] = useState(1)
+const ItemCount = ({ stock = 0, onAdd, initial = 1 }) => {
+    const [count, setCount] = useState(initial)
 
     const increment = () => {
         count < stock && setCount(count + 1);

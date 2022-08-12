@@ -2,6 +2,7 @@ import './Item.css'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 const Item = ({ item }) => {
+    
     const [url, setUrl] = useState(item.img)
 
     const currencyFormat = (num) => {

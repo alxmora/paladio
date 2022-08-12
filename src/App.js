@@ -4,10 +4,12 @@ import ItemListContainer from './components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import NotFoundException from './components/Errors/404';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import {CartContextProvider} from './context/CartContext';
 
 function App() {
   return (
     <div className="App">
+      <CartContextProvider>
       <BrowserRouter>
         <Navbar />
         <Routes>
@@ -17,6 +19,7 @@ function App() {
           <Route path='/*' element={<NotFoundException/>}></Route>
         </Routes>
       </BrowserRouter>
+      </CartContextProvider>
     </div>
   );
 }

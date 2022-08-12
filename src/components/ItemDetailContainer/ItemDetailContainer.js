@@ -25,7 +25,7 @@ const ItemDetailContainer = () => {
     if (product) {
         return (
             <div className='mt-5'>
-                <ItemDetail product={product} />
+                <ItemDetail product={product}/>
             </div>
         )
     }
