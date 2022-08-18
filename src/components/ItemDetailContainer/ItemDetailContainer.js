@@ -4,7 +4,8 @@ import { getProductById } from '../../asyncMock'
 import ItemDetail from '../ItemDetail/ItemDetail'
 import ItemDetailLoader from '../ItemDetailLoader/ItemDetailLoader'
 import ItemListContainer from '../ItemListContainer/ItemListContainer'
-
+import { getDoc, doc} from 'firebase/firestore'
+import { db } from '../../services/firebase'
 const ItemDetailContainer = () => {
 
     const [product, setProduct] = useState()
@@ -13,23 +14,17 @@ const ItemDetailContainer = () => {
     const { productId } = useParams()
 
     useEffect(() => {
-        getProductById(productId)
-            .then(product => {
-                !product ? setNotFound(true) : setProduct(product)
-            })
-            .catch(error => {
-                console.error(error)
-            })
+        getDoc(doc(db, 'products', productId)).then(response => {
+            const data = response.data()
+            const productAdapted = {id: response.id, ...data}
+            setProduct(productAdapted)
+        }).catch(error => {
+            console.log(error)
+            setNotFound(true)
+        })
     }, [])
 
-    if (product) {
-        return (
-            <div className='mt-5'>
-                <ItemDetail product={product}/>
-            </div>
-        )
-    }
-    else if(notFound){
+    if (notFound) {
         return (
             <div className='mt-5 d-flex align-content-center justify-content-center text-center flex-column'>
                 <h1>Lo sentimos, no pudimos encontrar el artículo que buscas</h1>
@@ -38,12 +33,19 @@ const ItemDetailContainer = () => {
             </div>
         )
     }
-    else {
-        return (
+    else{
+        return <>
+        {
+        product ? 
+            <div className='mt-5'>
+                <ItemDetail product={product}/>
+            </div>
+        :
             <div className='mt-5'>
                 <ItemDetailLoader />
             </div>
-        )
+        }
+        </>
     }
 
 

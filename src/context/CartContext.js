@@ -1,9 +1,14 @@
-import { useState, createContext } from "react"
+import { useState, createContext, useEffect } from "react"
 
 const CartContext = createContext()
 
 export const CartContextProvider = ({ children }) => {
     const [cart, setCart] = useState([])
+    const [total, setTotal] = useState(0)
+
+    useEffect(() => {
+        setTotal(totalOrder())
+    }, [cart]) //eslint-disable-line
 
     const addItem = (itemToAdd) => {
         if(!isInCart(itemToAdd.id)) {
@@ -22,6 +27,14 @@ export const CartContextProvider = ({ children }) => {
             })
             setCart(cartUpdated)
         }
+    }
+
+    const totalOrder = () => {
+        let total = 0
+        cart.forEach(item => {
+            total += item.quantity * item.price
+        })
+        return total
     }
 
     const getQuantityById = (id) => {
@@ -51,7 +64,7 @@ export const CartContextProvider = ({ children }) => {
     }
 
     return (
-      <CartContext.Provider value={{cart, addItem, getQuantity, isInCart, removeItem, getQuantityById, clearCart}}>
+      <CartContext.Provider value={{cart, total, addItem, getQuantity, isInCart, removeItem, getQuantityById, clearCart}}>
         {children}
       </CartContext.Provider>
     )

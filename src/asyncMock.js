@@ -17,7 +17,7 @@ const products = [
         img: 'https://ae01.alicdn.com/kf/H0158b36bb90c470595eb0df63c8d02d4J/Anillo-Punk-Vintage-con-cara-de-sonrisa-feliz-para-mujer-joyer-a-Bohemia-con-dijes-anillo.jpg_Q90.jpg_.webp',
         hover: 'https://ae01.alicdn.com/kf/Hd557c8f2000b43cc9d8bee08b19d012dN.jpg',
         stock: 10,
-        description: ' Made of brass. 18/23k'
+        description: 'Made of brass. 18/23k'
     },
     {
         id: '3',
