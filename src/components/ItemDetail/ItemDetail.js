@@ -19,7 +19,7 @@ const ItemDetail = (({product}) => {
 
     const handleOnAdd = (quantity) => {
         Swal.fire(
-            'Artículo agregado al carrito!',
+            '¡Artículo agregado al carrito!',
             `Agregaste ${quantity} ${quantity > 1 ? 'piezas' : 'pieza'}`,
             'success'
         )
@@ -45,7 +45,10 @@ const ItemDetail = (({product}) => {
                             quantity === 0 ? (
                                 <ItemCount stock={stock} initial={itemQuantity} onAdd={handleOnAdd} />
                             ) : (
-                                    <Link className="btnFinalizaCompra" to='/cart'>Finalizar compra</Link>
+                                    <>
+                                        <Link className="btnSeguirComprando" to='/'>Seguir Comprando</Link>
+                                        <Link className="btnFinalizaCompra mt-2" to='/cart'>Finalizar compra</Link>
+                                    </>
                             )
                         }
                     </div>

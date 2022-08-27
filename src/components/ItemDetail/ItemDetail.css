@@ -12,8 +12,31 @@
     display: flex; 
     justify-content: center;
     align-items: center;
+    transition: all 250ms ease;
+}
+
+.btnSeguirComprando{
+    width: 100%;
+    height: 70px;
+    border: 1px solid black;
+    background-color: transparent;
+    color: black;
+    text-transform: uppercase;
+    padding: 10px;
+    font-weight: 400;
+    text-decoration: none;
+    border-radius: 0;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    transition: all 250ms ease;
 }
 
 .btnFinalizaCompra:hover{
     color: white;
+}
+
+.btnSeguirComprando:hover{
+    color: black;
+    border: 2px solid black;
 }

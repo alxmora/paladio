@@ -1,31 +1,22 @@
 import './ItemListContainer.css'
 import { useEffect, useState } from 'react'
-// import { getProducts, getProductsByCategory } from '../../asyncMock'
 import ItemList from '../ItemList/ItemList'
 import { useParams } from 'react-router-dom'
-import { getDocs, collection, query, where } from 'firebase/firestore'
-import { db } from '../../services/firebase/index'
-
+import DualRingLoading from '../DualRingLoading/DualRingLoading'
+import { getProductsByCategory } from '../../services/firebase/firestore'
 const ItemListContainer = (props) => {
     const [products, setProducts] = useState([])
-    const [noItemsFound, setNoItemsFount] = useState(false)
+    const [noItemsFound, setNoItemsFound] = useState(false)
     
     const {categoryId} = useParams()
 
 
     useEffect(() => {
-        const collectionRef = !categoryId ? 
-        collection(db, 'products') : 
-        query(collection(db, 'products'), where('category', '==', categoryId))
-
-        getDocs(collectionRef).then(response => {
-            const productsAdapted = response.docs.map(doc => {
-                const data = doc.data()
-                return {id: doc.id, ...data}
-            })
-            setProducts(productsAdapted)
+        getProductsByCategory(categoryId).then(resp => {
+            setProducts(resp)
         }).catch(error => {
             console.log(error)
+            setNoItemsFound(true)
         })
     }, [categoryId])
 
@@ -62,9 +53,7 @@ const ItemListContainer = (props) => {
                 </div>
                 <br />
             </div>
-            <div className='d-flex justify-content-center mt-5'>
-                <div className="lds-dual-ring"></div>
-            </div>
+            <DualRingLoading/>
             </section>
         )
     }

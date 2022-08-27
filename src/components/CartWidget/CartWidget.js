@@ -9,7 +9,7 @@ const CartWidget = () => {
     return (
         <>
             {cartQuantity > 0 ?
-                <Link style={{ all: 'unset' }} to={'/cart'} className="d-flex align-items-center position-relative">
+                <Link style={{ all: 'unset' }} to={'/cart'} className="d-flex align-items-center position-relative mt-1">
                     <img src="/images/cartWidget.png" style={{ width: 20, height: 20, marginTop: -5, marginLeft: 50, marginRight: 10, cursor: 'pointer', position: 'relative' }} alt="" />
                     <p className='cartCounter'>{cartQuantity}</p>
                 </Link>

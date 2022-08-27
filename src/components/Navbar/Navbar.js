@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom'
 
 const Navbar = () => {
 
-    const [mobileNavActive, setIsActive] = useState(false)
+    const [mobileNavActive, setMobileNavActive] = useState(false)
 
     const handleClick = () => {
-        setIsActive(state => !state)
+        setMobileNavActive(state => !state)
     }
 
     return (
@@ -35,10 +35,10 @@ const Navbar = () => {
             </nav>
             <div className={mobileNavActive ? 'mobileLinks open' : 'mobileLinks'}>
                 <Link to='/' href="#Inicio">Inicio</Link>
-                <Link to='/category/rings' href="#Anillos">Anillos</Link>
-                <Link to='/category/necklaces' href="#Collares">Collares</Link>
-                <Link to='/category/bracelets' href="#Pulseras">Pulseras</Link>
-                <Link to='/category/earrings' href="#Aretes">Aretes</Link>
+                <Link to='/category/rings' onClick={handleClick} href="#Anillos">Anillos</Link>
+                <Link to='/category/necklaces' onClick={handleClick} href="#Collares">Collares</Link>
+                <Link to='/category/bracelets' onClick={handleClick} href="#Pulseras">Pulseras</Link>
+                <Link to='/category/earrings' onClick={handleClick} href="#Aretes">Aretes</Link>
             </div>
         </div>
 

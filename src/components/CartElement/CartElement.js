@@ -1,17 +1,18 @@
-import { getDoc, doc } from "firebase/firestore"
-import { db } from "../../services/firebase"
 import { useEffect, useState, useContext } from "react"
 import './CartElement.css'
 import CartContext from "../../context/CartContext"
+import { getProductById } from "../../services/firebase/firestore"
 
 const CartElement = ({item}) => {
     const [itemInfo, setItemInfo] = useState();
     const [loading, setLoading] = useState(true);
     const {removeItem} = useContext(CartContext)
     useEffect(() => {
-        getDoc(doc(db, 'products', item.id)).then(resp => {
-            setItemInfo(resp.data())
+        getProductById(item.id).then(resp => {
+            setItemInfo(resp)
             setLoading(false)
+        }).catch(error => {
+            console.log(error)
         })
     }, [])
 
@@ -44,7 +45,7 @@ const CartElement = ({item}) => {
                                 <p className="fw-bolder">{currencyFormat(item.quantity * item.price)}</p>
                             </div>
                             <div className="col-lg-3 col-md-4 col-sm-12 col-12 d-flex justify-content-end">
-                                <button className="removeItem w-100" onClick={handleRemoveItem}>Remove item</button>
+                                <button className="removeItem w-100" onClick={handleRemoveItem}>Eliminar</button>
                             </div>
                         </div>
                     </div>
