@@ -5,8 +5,9 @@ This is a project developed by Ramón Alejandro Jiménez Moreno for Coderhouse's
 Commission 34695.
 
 
-![Gif paladio](https://media.giphy.com/media/t83Kn1PzgfupXAjnm5/giphy.gif)
-- [FULL GIF](https://github.com/alxmora/paladio/blob/06PrimeraEntregaProyecto/public/images/gifs/paladio_gif.gif)
+![Gif paladio](https://media.giphy.com/media/eLUAkSmFWI7qhF5tN4/giphy.gif)
+- [FULL VIDEO](https://vimeo.com/747498768)
+- [VISIT LIVE SITE](https://paladio.vercel.app/)
  
 
 ## Contents
