@@ -4,20 +4,18 @@ import DualRingLoading from "../DualRingLoading/DualRingLoading"
 import { Link, useNavigate } from "react-router-dom";
 import './Checkout.css'
 import { getDocsByIds, updateBatch, commitBatch, createDocument } from '../../services/firebase/firestore'
-import {MdKeyboardBackspace} from 'react-icons/md'
+import { MdKeyboardBackspace } from 'react-icons/md'
+import useForm from "../../hooks/useForm";
 
 const Checkout = () => {
     const [loadingOrder, setLoadingOrder] = useState(false)
 
-    const [name, setName] = useState('')
-    const [surname, setSurname] = useState('')
-    const [phone, setPhone] = useState('')
-    const [address, setAddress] = useState('')
+    const initialValuesForm = { name: '', surname: '', phone: '', address: '' }
+    const initialStatesForm = { name: true, surname: true, phone: true, address: true }
 
-    const [nameInvalid, setNameInvalid] = useState(false)
-    const [surnameInvalid, setSurnameInvalid] = useState(false)
-    const [phoneInvalid, setPhoneInvalid] = useState(false)
-    const [addressInvalid, setAddressInvalid] = useState(false)
+    const [formValues, handleOnChange, validInput] = useForm(initialValuesForm, initialStatesForm)
+
+    const { name, surname, phone, address } = formValues
 
     const { cart, getQuantity, total, clearCart } = useContext(CartContext)
 
@@ -38,12 +36,13 @@ const Checkout = () => {
     const handleSubmit = (event) => {
         event.preventDefault()
         if (name === '' || surname === '' || phone === '' || address === '') {
-            name === '' && setNameInvalid(true)
-            surname === '' && setSurnameInvalid(true)
-            phone === '' && setPhoneInvalid(true)
-            address === '' && setAddressInvalid(true)
+            Swal.fire(
+                '¡Orden incompleta!',
+                `Llena todos los campos`,
+                'info'
+            )
         }
-        else {
+        else{ 
             generateOrder();
         }
     }
@@ -52,12 +51,7 @@ const Checkout = () => {
         setLoadingOrder(true)
         try {
             const order = {
-                buyerPerson: {
-                    name: name,
-                    surname: surname,
-                    phone: phone,
-                    address: address
-                },
+                buyerPerson: formValues,
                 items: cart,
                 totalQuantity,
                 total,
@@ -71,27 +65,27 @@ const Checkout = () => {
                     const cartItem = cart.find(item => item.id === doc.id)
                     const cartItemQuantity = cartItem.quantity
                     if (itemStock >= cartItemQuantity) {
-                        updateBatch('products', doc.id, { stock : itemStock - cartItemQuantity})
+                        updateBatch('products', doc.id, { stock: itemStock - cartItemQuantity })
                     }
                     else {
-                        outOfStock.push({doc})
+                        outOfStock.push({ doc })
                     }
                 })
-    
+
                 if (outOfStock.length === 0) {
-                        commitBatch()
-                        createDocument('orders', order).then(orderSuccess => {
-                            Swal.fire(
-                                '¡Orden generada correctamente!',
-                                `El id de tu orden es: ${orderSuccess.id}`,
-                                'success'
-                            ).then(() => {
-                                clearCart()
-                                navigate('/')
-                            })
-                        }).catch(err => {
-                            console.warn(err)
+                    commitBatch()
+                    createDocument('orders', order).then(orderSuccess => {
+                        Swal.fire(
+                            '¡Orden generada correctamente!',
+                            `El id de tu orden es: ${orderSuccess.id}`,
+                            'success'
+                        ).then(() => {
+                            clearCart()
+                            navigate('/')
                         })
+                    }).catch(err => {
+                        console.warn(err)
+                    })
                 }
                 else {
                     console.warn('Hay productos que están fuera de stock')
@@ -103,18 +97,21 @@ const Checkout = () => {
             setLoadingOrder(false)
         }
     }
-        return ( <>
-            { 
-                loadingOrder ?
-                    <div className="text-center mt-5">
-                        <div className="row d-flex flex-column justify-content-center align-items-center w-100">
-                            <div className="col-4">
-                                <h1>Checkout</h1>
-                            </div>
+
+    return (<>
+        {
+            loadingOrder ?
+                <div className="text-center mt-5">
+                    <div className="row d-flex flex-column justify-content-center align-items-center w-100">
+                        <div className="col-4">
+                            <h1>Checkout</h1>
                         </div>
-                        <DualRingLoading />
                     </div>
+                    <DualRingLoading />
+                </div>
                 :
+                cart.length > 0
+                    ?
                     <div className="container">
                         <div className="row d-flex flex-row justify-content-center mt-lg-5 mt-0">
                             <div className="col-12 d-flex align-items-end justify-content-between">
@@ -129,14 +126,14 @@ const Checkout = () => {
                                     <form onSubmit={handleSubmit}>
                                         <div className="row">
                                             <div className="col-6">
-                                                <label htmlFor="name">Nombre</label> <input type="text" className={nameInvalid ? 'invalid' : ''} placeholder={nameInvalid ? 'Ingresa tu nombre' : 'Nombre'} name="name" value={name} onKeyDown={() => setNameInvalid(false)} onChange={(e) => setName(e.target.value)} />
+                                                <label htmlFor="name">Nombre</label> <input type="text" className={validInput('name') ? '' : 'invalid'} placeholder={validInput('name') ? 'Nombre': 'Ingresa tu nombre'} name="name" value={name} onChange={handleOnChange} required/>
                                             </div>
                                             <div className="col-6">
-                                                <label htmlFor="surname">Apellido</label> <input type="text" className={surnameInvalid ? 'invalid' : ''} placeholder={surnameInvalid ? 'Ingresa tu apellido' : 'Apellido'} name="surname" value={surname} onKeyDown={() => setSurnameInvalid(false)} onChange={(e) => setSurname(e.target.value)} />
+                                                <label htmlFor="surname">Apellido</label> <input type="text" className={validInput('surname') ? '' : 'invalid'} placeholder={validInput('surname') ? 'Apellido' : 'Ingresa tu apellido'} name="surname" value={surname} onChange={handleOnChange} required/>
                                             </div>
                                         </div>
-                                        <label htmlFor="phone">Teléfono</label> <input type="text" className={phoneInvalid ? 'invalid' : ''} placeholder={phoneInvalid ? 'Ingresa un teléfono' : 'Teléfono'} name="phone" value={phone} onKeyDown={() => setPhoneInvalid(false)} onChange={(e) => setPhone(e.target.value)} />
-                                        <label htmlFor="address">Dirección</label> <input type="text" className={addressInvalid ? 'invalid' : ''} placeholder={addressInvalid ? 'Ingresa una dirección de entrega' : 'Dirección de entrega'} name="address" value={address} onKeyDown={() => setAddressInvalid(false)} onChange={(e) => setAddress(e.target.value)} />
+                                        <label htmlFor="phone">Teléfono</label> <input type="text" className={validInput('phone') ? '' : 'invalid'} placeholder={validInput('phone') ? 'Teléfono' : 'Ingresa un teléfono'} name="phone" value={phone} onChange={handleOnChange} required/>
+                                        <label htmlFor="address">Dirección</label> <input type="text" className={validInput('address') ? '' : 'invalid'} placeholder={validInput('address') ? 'Dirección de entrega' : 'Ingresa una dirección de entrega'} name="address" value={address} onChange={handleOnChange} required/>
                                         <button className="btnFinalizaCompra mt-4 w-100" type="submit">Generar orden</button>
                                     </form>
                                 </div>
@@ -152,9 +149,18 @@ const Checkout = () => {
                             </div>
                         </div>
                     </div>
-            }
-            </>
-        )
+                    :
+                    <div className="container">
+                        <div className="row mt-5">
+                            <div className="col-12 text-center">
+                                <h1>Tu carrito está vacío</h1>
+                                <Link className="btn btn-dark mt-5" to={'/'}>Continúa comprando</Link>
+                            </div>
+                        </div>
+                    </div>
+        }
+    </>
+    )
 }
 
 export default Checkout

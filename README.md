@@ -7,7 +7,7 @@ Commission 34695.
 
 ![Gif paladio](https://media.giphy.com/media/t83Kn1PzgfupXAjnm5/giphy.gif)
 - [FULL GIF](https://github.com/alxmora/paladio/blob/06PrimeraEntregaProyecto/public/images/gifs/paladio_gif.gif)
-
+ 
 
 ## Contents
 - [Technologies](#technologies)
@@ -35,6 +35,7 @@ Run application
     npm start
 
 ## Routes
+
 Routes are defined in /src/App.js and work as follows.
 
 Return ItemListContainer with all available products
@@ -48,6 +49,14 @@ Filter products by category
 Show product details
 
     /detail/:productId
+
+Manage shopping cart
+
+    /cart
+
+Checkout and order processing
+
+    /checkout
 
 404 Not Found Exception
 

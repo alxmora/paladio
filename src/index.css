@@ -7,11 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-.widthXl{
-  max-width: 2000px !important;
-}
-
 .bgWhite{
  background-color: #fff !important;
 }
